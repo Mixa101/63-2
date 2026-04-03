@@ -19,11 +19,11 @@ from django.db import models
 class Post(models.Model):
     header = models.CharField(max_length=255)
     description = models.TextField()
-    user = models.IntegerField(null=True, blank=True)
     rate = models.IntegerField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to="posts", null=True, blank=True)
 
     def __str__(self):
-        return f"{self.header} -- {self.user}"
+        return f"{self.header}"

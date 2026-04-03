@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    <h1>POSTS</h1>
     {% for post in posts %}
-    <div style="display: flex;">
+    <div class="container card">
     <p>{{post.id}}  <h3>{{post.header}}</h3></p>
+    {% if post.image %}
+    <img src=" {{ post.image.url }}" class="card-img-top">
+    {% else %}
+    <img src="" alt="">
+    {% endif %}
     </div>
     {% endfor %}
     {% endblock %}
