@@ -1,0 +1,28 @@
+from typing import Any
+
+from django import forms
+
+from posts.models import Post
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ["header", "description", "rate", "is_published", "image"]
+
+
+class CommonPostForm(forms.Form):
+    header = forms.CharField(max_length=255, min_length=5, required=True)
+    description = forms.CharField()
+    rate = forms.IntegerField(max_value=5, min_value=1, required=True)
+    is_published = forms.BooleanField(disabled=False)
+
+    def clean_header(self):
+        header = self.cleaned_data.get("header")
+        if header == "запрещенное слово":
+            raise forms.ValidationError(message="Вы ввели запрещенное слово!")
+
+        return header
+
+    def clean(self) -> dict[str, Any]:
+        return super().clean()

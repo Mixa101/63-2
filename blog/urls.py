@@ -20,15 +20,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from posts.views import about, get_post, get_posts, hello, main
+from posts.views import about, create_post, get_post, get_posts, hello, main
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("hello/", hello),
     path("", main, name="home"),
     path("about/", about),
-    path("posts/", get_posts),
+    path("posts/", get_posts, name="post_list"),
     path("post/<int:id>/", get_post, name="post_detail"),
+    path("post/create/", create_post, name="post_create"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

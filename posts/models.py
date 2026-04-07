@@ -34,7 +34,7 @@ class Post(models.Model):
     rate = models.IntegerField(null=True, blank=True)
     tags = models.ManyToManyField(Tags, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-
+    is_published = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to="posts", null=True, blank=True)
