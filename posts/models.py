@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -18,10 +19,10 @@ from django.db import models
 # SELECT * FROM posts_post WHERE header ILIKE '% AB %'; posts = Post.objects.filter(header__icontains="ab", is_deleted = False)
 
 
-class User(models.Model):
-    name = models.CharField(max_length=255)
-    surname = models.CharField(max_length=255)
-    age = models.PositiveIntegerField()
+# class User(models.Model):
+#     name = models.CharField(max_length=255)
+#     surname = models.CharField(max_length=255)
+#     age = models.PositiveIntegerField()
 
 
 class Tags(models.Model):

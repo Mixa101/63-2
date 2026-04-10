@@ -25,4 +25,11 @@ class CommonPostForm(forms.Form):
         return header
 
     def clean(self) -> dict[str, Any]:
-        return super().clean()
+        cleaned_data = super().clean()
+
+        rate = cleaned_data.get("rate")
+
+        if rate < 5:
+            raise forms.ValidationError("Рейтинг меньше 5 не подходит!")
+
+        return cleaned_data

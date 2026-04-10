@@ -2,9 +2,12 @@
 
 {% block content %}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% if form.errors %}
+<div class="container mt-4" style="max-width: 500px;">
+    <h2>Логин</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
         <div class="alert alert-danger">
             {% for field in form %}
                 {% for error in field.errors %}
@@ -13,12 +16,13 @@
             {% endfor %}
             {% for error in form.non_field_errors %}
                 <p class="mb-0">{{ error }}</p>
-            {% endfor %}
+        {% endfor %}
         </div>
         {% endif %}
+        {{ form.as_p }}
 
-    {{ form.as_p }}
-    <button type="submit">Создать пост</button>
-</form>
+        <button type="submit" class="btn btn-success">Войти</button>
+    </form>
+</div>
 
 {% endblock %}
